@@ -16,10 +16,10 @@ class Updator
     /**
      * Constructor.
      *
-     * @param ConfigParser $configParser Config parser service
+     * @param array $options Options
      */
-    public function __construct(ConfigParser $configParser)
+    public function __construct(array $options)
     {
-        $this->options = $configParser->getOptions();
+        $this->options = $options;
     }
 }
