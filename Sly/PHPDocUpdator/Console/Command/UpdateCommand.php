@@ -34,8 +34,7 @@ class UpdateCommand extends BaseCommand
         $this
             ->setName('update')
             ->setDescription('Update command')
-            ->setHelp('Help')
-        ;
+            ->setHelp('Help');
 
         $this->addCommonOptions();
     }
@@ -49,5 +48,7 @@ class UpdateCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
+
+        print_r($options);
     }
 }

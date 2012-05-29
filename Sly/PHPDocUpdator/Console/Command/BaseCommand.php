@@ -47,26 +47,30 @@ abstract class BaseCommand extends Command
      */
     protected function getConfigFilePath($givenConfigFilePath, OutputInterface $output)
     {
-        if ($givenConfigFilePath)
-        {
+        if ($givenConfigFilePath) {
             $configFilePath = ROOT_DIR.'/'.$givenConfigFilePath;
 
-            if (file_exists($configFilePath))
-            {
+            if (file_exists($configFilePath)) {
                 $output->writeln(sprintf('YML config file: <info>%s</info>', $configFilePath));
 
                 $this->configFilePath = $configFilePath;
-            }
-            else
-            {
+            } else {
                 $output->writeln(sprintf('<error>%s</error> YAML config file not found', $configFilePath));
 
                 $this->configFilePath = false;
             }
-        }
-        else
-        {
+        } else {
             $output->writeln('No YAML config file given, default options enabled');
         }
+    }
+
+    /**
+     * Get options.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

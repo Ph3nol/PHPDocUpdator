@@ -47,8 +47,7 @@ class ConfigParser
      */
     protected function getParsedConfig()
     {
-        if (false === $this->configFilePath || null === $this->configFilePath)
-        {
+        if (false === $this->configFilePath || null === $this->configFilePath) {
             return array();
         }
 
