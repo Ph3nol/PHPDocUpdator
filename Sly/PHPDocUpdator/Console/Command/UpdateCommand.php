@@ -49,6 +49,8 @@ class UpdateCommand extends BaseCommand
     {
         parent::execute($input, $output);
 
-        print_r($options);
+        /**
+         * @todo To be continued.
+         */
     }
 }
