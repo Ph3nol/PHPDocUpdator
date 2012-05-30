@@ -32,17 +32,15 @@ class Updator
      */
     protected function loadFoldersIntoFinder()
     {
-        foreach ($this->options['include'] as $file)
-        {
+        foreach ($this->options['include'] as $file) {
             if (is_array($file)) {
-                $file = $file[0];
+                $file = key($file);
             }
 
             $this->finder->in(ROOT_DIR.'/'.$file);
         }
 
-        foreach ($this->options['exclude'] as $file)
-        {
+        foreach ($this->options['exclude'] as $file) {
             $this->finder->exclude(ROOT_DIR.'/'.$file);
         }
     }
