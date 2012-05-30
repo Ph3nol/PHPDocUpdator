@@ -2,7 +2,7 @@
 
 namespace Sly\PHPDocUpdator\Updator;
 
-use Sly\PHPDocUpdator\Config\ConfigParser;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Updator.
@@ -12,6 +12,7 @@ use Sly\PHPDocUpdator\Config\ConfigParser;
 class Updator
 {
     protected $options;
+    protected $finder;
 
     /**
      * Constructor.
@@ -21,5 +22,28 @@ class Updator
     public function __construct(array $options)
     {
         $this->options = $options;
+        $this->finder  = new Finder();
+
+        $this->loadFoldersIntoFinder();
+    }
+
+    /**
+     * Loader folders into Finder service.
+     */
+    protected function loadFoldersIntoFinder()
+    {
+        foreach ($this->options['include'] as $file)
+        {
+            if (is_array($file)) {
+                $file = $file[0];
+            }
+
+            $this->finder->in(ROOT_DIR.'/'.$file);
+        }
+
+        foreach ($this->options['exclude'] as $file)
+        {
+            $this->finder->exclude(ROOT_DIR.'/'.$file);
+        }
     }
 }
