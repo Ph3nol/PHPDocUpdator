@@ -1,5 +1,7 @@
 # PHPDocUpdator
 
+[![Continuous Integration status](https://secure.travis-ci.org/Ph3nol/PHPDocUpdator.png)](http://travis-ci.org/Ph3nol/PHPDocUpdator)
+
 ## What is it?
 
 PHPDocUpdator was created to make easy PHPDoc comments updates from CLI.
