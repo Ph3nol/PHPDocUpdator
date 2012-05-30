@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Sly\PHPDocUpdator\Config\ConfigParser;
+use Sly\PHPDocUpdator\Updator\Updator;
 
 /**
  * Abstract BaseCommand class.
@@ -32,9 +33,10 @@ abstract class BaseCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $configParser = new ConfigParser($this->getConfigFilePath($input->getOption('config'), $output));
+        $configFilePath = $this->getConfigFilePath($input->getOption('config'), $output);
 
-        $this->options = $configParser->getOptions();
+        $configParser = new ConfigParser($configFilePath);
+        $updator = new Updator($configParser->getOptions());
     }
 
     /**
@@ -50,16 +52,17 @@ abstract class BaseCommand extends Command
 
             if (file_exists($configFilePath)) {
                 $output->writeln(sprintf('YML config file: <info>%s</info>', $configFilePath));
-
                 $this->configFilePath = $configFilePath;
             } else {
                 $output->writeln(sprintf('<error>%s</error> YAML config file not found', $configFilePath));
-
                 $this->configFilePath = false;
             }
         } else {
             $output->writeln('No YAML config file given, default options enabled');
+            $this->configFilePath = null;
         }
+
+        return $this->configFilePath;
     }
 
     /**
