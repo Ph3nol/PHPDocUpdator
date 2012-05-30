@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Sly\PHPDocUpdator\Config\ConfigParser;
-use Sly\PHPDocUpdator\Updator\Updator;
 
 /**
  * Abstract BaseCommand class.
@@ -33,10 +32,9 @@ abstract class BaseCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $configFilePath = $this->getConfigFilePath($input->getOption('config'), $output);
+        $configParser = new ConfigParser($this->getConfigFilePath($input->getOption('config'), $output));
 
-        $configParser = new ConfigParser($configFilePath);
-        $updator = new Updator($configParser->getOptions());
+        $this->options = $configParser->getOptions();
     }
 
     /**

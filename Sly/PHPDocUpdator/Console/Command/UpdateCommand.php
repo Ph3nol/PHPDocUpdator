@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Sly\PHPDocUpdator\Updator\Updator;
 
 /**
  * Update command.
@@ -49,8 +50,6 @@ class UpdateCommand extends BaseCommand
     {
         parent::execute($input, $output);
 
-        /**
-         * @todo To be continued.
-         */
+        $updator = new Updator($this->options);
     }
 }
