@@ -13,11 +13,11 @@
         }
     ],
     "require": {
-        "php": ">=5.3.2",
-        "symfony/console": "dev-master",
-        "symfony/yaml": "dev-master",
-        "symfony/finder": "dev-master",
-        "symfony/filesystem": "dev-master"
+        "php": ">=5.3.3",
+        "symfony/console": "2.1.*",
+        "symfony/yaml": "2.1.*",
+        "symfony/finder": "2.1.*",
+        "symfony/filesystem": "2.1.*"
     },
     "autoload": {
         "psr-0": { "Sly\\PHPDocUpdator": "" }
