@@ -34,11 +34,11 @@ abstract class BaseCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $configFilePath = $this->getConfigFilePath($input->getOption('config'), $output);
-        $configParser  = new ConfigParser($configFilePath);
+        $configParser   = new ConfigParser($configFilePath);
 
         $this->options = $configParser->getOptions();
 
-        $updator       = new Updator($this->options);
+        $updator = new Updator($this->options);
     }
 
     /**
