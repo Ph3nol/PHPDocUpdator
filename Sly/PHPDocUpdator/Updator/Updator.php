@@ -54,8 +54,7 @@ class Updator
      */
     protected function loadFoldersFromFinderToFileManager()
     {
-        foreach ($this->finder as $file)
-        {
+        foreach ($this->finder as $file) {
             $this->fileManager->add($file);
         }
     }
