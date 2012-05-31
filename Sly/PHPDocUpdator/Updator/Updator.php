@@ -3,6 +3,7 @@
 namespace Sly\PHPDocUpdator\Updator;
 
 use Symfony\Component\Finder\Finder;
+use Sly\PHPDocUpdator\Manager\FileManager;
 
 /**
  * Updator.
@@ -13,6 +14,7 @@ class Updator
 {
     protected $options;
     protected $finder;
+    protected $fileManager;
 
     /**
      * Constructor.
@@ -21,10 +23,12 @@ class Updator
      */
     public function __construct(array $options)
     {
-        $this->options = $options;
-        $this->finder  = new Finder();
+        $this->options     = $options;
+        $this->finder      = new Finder();
+        $this->fileManager = new FileManager();
 
         $this->loadFoldersIntoFinder();
+        $this->loadFoldersFromFinderToFileManager();
     }
 
     /**
@@ -42,6 +46,17 @@ class Updator
 
         foreach ($this->options['exclude'] as $file) {
             $this->finder->exclude(ROOT_DIR.'/'.$file);
+        }
+    }
+
+    /**
+     * Load folders from Finder to FileManager.
+     */
+    protected function loadFoldersFromFinderToFileManager()
+    {
+        foreach ($this->finder as $file)
+        {
+            $this->fileManager->add($file);
         }
     }
 }
