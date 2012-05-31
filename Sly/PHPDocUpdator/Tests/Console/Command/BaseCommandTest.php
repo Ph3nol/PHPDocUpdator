@@ -9,4 +9,10 @@ namespace Sly\PHPDocUpdator\Tests\Console\Command;
  */
 class BaseCommandTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test constructor.
+     */
+    public function testConstructor()
+    {
+    }
 }

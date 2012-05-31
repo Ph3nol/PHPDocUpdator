@@ -9,4 +9,10 @@ namespace Sly\PHPDocUpdator\Tests\Console;
  */
 class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test constructor.
+     */
+    public function testConstructor()
+    {
+    }
 }
