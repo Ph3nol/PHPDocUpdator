@@ -49,7 +49,7 @@ class Parser extends \ReflectionClass
         foreach ($this->getMethods() as $method) {
             $methods[$method->getName()] = array(
                 'comments' => $method->getDocComment(),
-                'phpdoc' => new PHPDocumentorDocBlock($method->getDocComment()),
+                'phpdoc' => new PHPDocumentorDocBlock($this->getDocComment()),
             );
         }
 
