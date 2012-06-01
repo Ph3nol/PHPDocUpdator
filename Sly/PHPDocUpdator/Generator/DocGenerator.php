@@ -12,45 +12,42 @@ use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
  */
 class DocGenerator
 {
-	protected $source;
+    protected $source;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param array|PHPDocumentorDocBlock $source Source for PHPDoc generation
-	 */
-	public function __construct($source)
-	{
-		if (is_object($source) && ($source instanceof PHPDocumentorDocBlock))
-		{
+    /**
+     * Constructor.
+     *
+     * @param array|PHPDocumentorDocBlock $source Source for PHPDoc generation
+     */
+    public function __construct($source)
+    {
+        if (is_object($source) && ($source instanceof PHPDocumentorDocBlock)) {
 
-		}
-		elseif (is_array($source))
-		{
+        }
+        elseif (is_array($source)) {
 
-		}
-		else
-		{
-			throw new \Exception('DocGenerator must have a PHPDocumentorDocBlock object or an array given to its constructor');
-		}
-	}
+        }
+        else {
+            throw new \Exception('DocGenerator must have a PHPDocumentorDocBlock object or an array given to its constructor');
+        }
+    }
 
-	/**
-	 * Get final data from object.
-	 *
-	 * @param PHPDocumentorDocBlock $source Source
-	 */
-	protected function getFinalDataFromObject(PHPDocumentorDocBlock $source)
-	{
-	}
+    /**
+     * Get final data from object.
+     *
+     * @param PHPDocumentorDocBlock $source Source
+     */
+    protected function getFinalDataFromObject(PHPDocumentorDocBlock $source)
+    {
+    }
 
-	/**
-	 * Get final source from array.
-	 *
-	 * @param array $source Source
-	 */
-	protected function getFinalSourceFromArray(array $source)
-	{
-		return $source;
-	}
+    /**
+     * Get final source from array.
+     *
+     * @param array $source Source
+     */
+    protected function getFinalSourceFromArray(array $source)
+    {
+        return $source;
+    }
 }
