@@ -2,6 +2,7 @@
 
 namespace Sly\PHPDocUpdator\Generator;
 
+use Sly\PHPDocUpdator\Parser\FileParser;
 use Sly\PHPDocUpdator\Parser\DocParser;
 
 /**
@@ -12,28 +13,41 @@ use Sly\PHPDocUpdator\Parser\DocParser;
  */
 class DocGenerator
 {
-    protected $docParserData;
+    protected $file;
 
     /**
      * Constructor.
      * 
-     * @param DocParser $docParser Doc Parser service
+     * @param array $file File informations
      */
-    public function __construct(DocParser $docParser)
+    public function __construct(array $file)
     {
-        $this->docParserData = $docParser->getData();
+        $this->file = $file;
+
+        $this->fileMaker();
+    }
+
+    protected function fileMaker()
+    {
+        /**
+         * @todo
+         */
     }
 
     /**
      * Get doc block.
+     * 
+     * @param array $parserData Parser data
      *
      * @return string
      */
-    public function getDocBlock()
+    public static function getDocBlock(array $parserData)
     {
+        print_r($parserData);
+        exit();
         $docBlockLines = array('/**');
 
-        foreach ($this->docParserData['tags'] as $tagName => $tag) {
+        foreach ($parserData['tags'] as $tagName => $tag) {
             $docBlockTagLines = array(
                 ' * @'.$tagName,
                 $tag['type'],

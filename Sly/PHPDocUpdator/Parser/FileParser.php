@@ -31,7 +31,7 @@ class FileParser extends \ReflectionClass
      *
      * @return array
      */
-    public function getParsedData()
+    public function getData()
     {
         $phpDocumentorDocBlock = new PHPDocumentorDocBlock($this);
 

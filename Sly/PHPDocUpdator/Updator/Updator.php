@@ -31,20 +31,13 @@ class Updator
 
         $this->loadFoldersIntoFinder();
 
-        $parsedFiles = $this->getFileManagerFiles();
+        foreach ($this->getFileManagerFiles() as $file) {
+            $docGenerator = new DocGenerator($file);
 
-        /**
-         * Just to test with some methods.
-         */
-
-        foreach ($parsedFiles as $file) {
-            foreach ($file['parsingData'][0]['methods'] as $method) {
-                $test = $method['docParser'];
-            }
+            /**
+             * @todo
+             */
         }
-
-        $docGenerator = new DocGenerator($test);
-        echo $docGenerator->getDocBlock();
     }
 
     /**
