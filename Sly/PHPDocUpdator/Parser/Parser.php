@@ -3,6 +3,7 @@
 namespace Sly\PHPDocUpdator\Parser;
 
 use Symfony\Component\Finder\SplFileInfo;
+use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
 
 /**
  * Parser service.
@@ -45,7 +46,10 @@ class Parser extends \ReflectionClass
         $methods = array();
 
         foreach ($this->getMethods() as $method) {
-            $methods[$method->getName()] = $method->getDocComment();
+            $methods[$method->getName()] = array(
+                'comments' => $method->getDocComment(),
+                'phpdoc' => new PHPDocumentorDocBlock($this),
+            );
         }
 
         return $methods;

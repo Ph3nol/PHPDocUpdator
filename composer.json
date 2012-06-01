@@ -18,6 +18,7 @@
         "symfony/yaml": "dev-master",
         "symfony/finder": "dev-master",
         "symfony/filesystem": "dev-master",
+        "phpdocumentor/reflection-docblock": "dev-master",
         "fabpot/php-cs-fixer": "dev-master"
     },
     "autoload": {
