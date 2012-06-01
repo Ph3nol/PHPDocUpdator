@@ -3,6 +3,7 @@
 namespace Sly\PHPDocUpdator\Parser;
 
 use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
+use Sly\PHPDocUpdator\Parser\DocParser;
 
 /**
  * FileParser service.
@@ -32,10 +33,12 @@ class FileParser extends \ReflectionClass
      */
     public function getParsedData()
     {
+        $phpDocumentorDocBlock = new PHPDocumentorDocBlock($this);
+
         $this->parsedData[] = array(
-            'comments' => $this->getDocComment(),
-            'phpDoc'   => new PHPDocumentorDocBlock($this),
-            'methods'  => $this->getParsedMethods(),
+            'comments'  => $this->getDocComment(),
+            'docParser' => new DocParser($phpDocumentorDocBlock),
+            'methods'   => $this->getParsedMethods(),
         );
 
         return $this->parsedData;
@@ -51,9 +54,11 @@ class FileParser extends \ReflectionClass
         $methods = array();
 
         foreach ($this->getMethods() as $method) {
+            $phpDocumentorDocBlock = new PHPDocumentorDocBlock($method->getDocComment());
+
             $methods[$method->getName()] = array(
-                'comments' => $method->getDocComment(),
-                'phpDoc'   => new PHPDocumentorDocBlock($method->getDocComment()),
+                'comments'  => $method->getDocComment(),
+                'docParser' => new DocParser($phpDocumentorDocBlock),
             );
         }
 
