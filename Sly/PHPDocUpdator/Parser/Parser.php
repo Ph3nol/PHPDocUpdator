@@ -53,7 +53,7 @@ class Parser extends \ReflectionClass
         foreach ($this->getMethods() as $method) {
             $methods[$method->getName()] = array(
                 'comments' => $method->getDocComment(),
-                'phpdoc' => new PHPDocumentorDocBlock($this->getDocComment()),
+                'phpdoc'   => new PHPDocumentorDocBlock($this->getDocComment()),
             );
         }
 
@@ -88,7 +88,7 @@ class Parser extends \ReflectionClass
         for ($i = 2; $i < $count; $i++) {
             if ($tokens[$i - 2][0] == T_CLASS && $tokens[$i - 1][0] == T_WHITESPACE && $tokens[$i][0] == T_STRING) {
                 $className = $tokens[$i][1];
-                $classes[]  = $className;
+                $classes[] = $className;
             }
         }
 
