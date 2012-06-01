@@ -23,11 +23,9 @@ class DocGenerator
     {
         if (is_object($source) && ($source instanceof PHPDocumentorDocBlock)) {
 
-        }
-        elseif (is_array($source)) {
+        } elseif (is_array($source)) {
 
-        }
-        else {
+        } else {
             throw new \Exception('DocGenerator must have a PHPDocumentorDocBlock object or an array given to its constructor');
         }
     }
