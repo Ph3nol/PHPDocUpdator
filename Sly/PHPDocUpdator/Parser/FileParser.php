@@ -5,7 +5,7 @@ namespace Sly\PHPDocUpdator\Parser;
 use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
 
 /**
- * Parser service.
+ * FileParser service.
  *
  * @author Cédric Dugat <ph3@slynett.com>
  */

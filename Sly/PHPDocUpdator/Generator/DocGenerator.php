@@ -2,7 +2,7 @@
 
 namespace Sly\PHPDocUpdator\Generator;
 
-use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
+use Sly\PHPDocUpdator\Parser\DocParser;
 
 /**
  * DocGenerator service.
@@ -12,42 +12,40 @@ use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
  */
 class DocGenerator
 {
-    protected $source;
+    protected $docParserData;
 
     /**
      * Constructor.
-     *
-     * @param array|PHPDocumentorDocBlock $source Source for PHPDoc generation
+     * 
+     * @param DocParser $docParser Doc Parser service
      */
-    public function __construct($source)
+    public function __construct(DocParser $docParser)
     {
-        if (is_object($source) && ($source instanceof PHPDocumentorDocBlock)) {
+        $this->docParserData = $docParser->getData();
+    }
 
-        } elseif (is_array($source)) {
+    /**
+     * Get doc block.
+     *
+     * @return string
+     */
+    public function getDocBlock()
+    {
+        $docBlockLines = array('/**');
 
-        } else {
-            throw new \Exception('DocGenerator must have a PHPDocumentorDocBlock object or an array given to its constructor');
+        foreach ($this->docParserData['tags'] as $tagName => $tag) {
+            $docBlockTagLines = array(
+                ' * @'.$tagName,
+                $tag['type'],
+                $tag['variableName'],
+                $tag['description'],
+            );
+
+            $docBlockLines[] = implode(' ', $docBlockTagLines);
         }
-    }
 
-    /**
-     * Get final data from object.
-     *
-     * @param PHPDocumentorDocBlock $source Source
-     */
-    protected function getFinalDataFromObject(PHPDocumentorDocBlock $source)
-    {
-    }
+        $docBlockLines[] = ' */';
 
-    /**
-     * Get final source from array.
-     *
-     * @param array $source Source
-     *
-     * @return array
-     */
-    protected function getFinalSourceFromArray(array $source)
-    {
-        return $source;
+        return implode("\n", $docBlockLines);
     }
 }
