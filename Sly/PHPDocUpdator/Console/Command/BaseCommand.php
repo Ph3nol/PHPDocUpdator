@@ -36,8 +36,6 @@ abstract class BaseCommand extends Command
         $configParser   = new ConfigParser($configFilePath);
 
         $this->options = $configParser->getOptions();
-
-        $updator = new Updator($this->options);
     }
 
     /**
