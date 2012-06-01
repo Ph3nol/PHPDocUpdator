@@ -30,10 +30,6 @@ class Updator
         $this->loadFoldersIntoFinder();
 
         $parsedFiles = $this->getFileManagerFiles();
-
-        /**
-         * @todo To be continued
-         */
     }
 
     /**
