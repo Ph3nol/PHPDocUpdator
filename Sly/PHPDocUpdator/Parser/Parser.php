@@ -2,7 +2,6 @@
 
 namespace Sly\PHPDocUpdator\Parser;
 
-use Symfony\Component\Finder\SplFileInfo;
 use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
 
 /**
