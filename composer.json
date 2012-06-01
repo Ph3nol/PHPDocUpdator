@@ -18,7 +18,7 @@
         "symfony/yaml": "dev-master",
         "symfony/finder": "dev-master",
         "symfony/filesystem": "dev-master",
-		"fabpot/php-cs-fixer": "dev-master"
+        "fabpot/php-cs-fixed": "dev-master"
     },
     "autoload": {
         "psr-0": { "Sly\\PHPDocUpdator": "" }
