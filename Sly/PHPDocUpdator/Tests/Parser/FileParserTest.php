@@ -2,14 +2,14 @@
 
 namespace Sly\PHPDocUpdator\Tests\Parser;
 
-use Sly\PHPDocUpdator\Parser\Parser;
+use Sly\PHPDocUpdator\Parser\FileParser;
 
 /**
- * Parser tests.
+ * FileParser tests.
  *
  * @author Cédric Dugat <ph3@slynett.com>
  */
-class ParserTest extends \PHPUnit_Framework_TestCase
+class FileParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test constructor.

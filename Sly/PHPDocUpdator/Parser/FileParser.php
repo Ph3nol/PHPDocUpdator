@@ -9,7 +9,7 @@ use phpDocumentor\Reflection\DocBlock as PHPDocumentorDocBlock;
  *
  * @author Cédric Dugat <ph3@slynett.com>
  */
-class Parser extends \ReflectionClass
+class FileParser extends \ReflectionClass
 {
     protected $parsedData;
 
