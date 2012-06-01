@@ -6,6 +6,17 @@
 
 PHPDocUpdator was created to make easy PHPDoc comments updates from CLI.
 
+## Dependencies
+
+PHPDocUpdator uses some dependency packages managed with [Composer](http://getcomposer.org):
+
+* [Symfony Console component](http://packagist.org/packages/symfony/console)
+* [Symfony YAML component](http://packagist.org/packages/symfony/yaml)
+* [Symfony Finder component](http://packagist.org/packages/symfony/finder)
+* [Symfony Filesystem component](http://packagist.org/packages/symfony/filesystem)
+* [phpDocumentor Reflection DocBlock](http://packagist.org/packages/phpdocumentor/reflection-docblock)
+* [Fabien Potencier's PHP CS Fixer](http://packagist.org/packages/fabpot/php-cs-fixer)
+
 ## Installation
 
 ```
