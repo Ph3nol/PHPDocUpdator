@@ -4,6 +4,7 @@ namespace Sly\PHPDocUpdator\Manager;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Sly\PHPDocUpdator\Parser\Parser;
 
 /**
  * File Manager service.
@@ -31,10 +32,20 @@ class FileManager
      */
     public function add(SplFileInfo $file)
     {
+        $parsingData = array();
+
+        foreach (Parser::getClassesFromFilePath($file->getRealpath()) as $class)
+        {
+            require_once $file->getRealpath();
+
+            $parsingData = new Parser($class);
+        }
+
         return $this->files[md5($file->getRealpath())] = array(
             'realPath'         => $file->getRealpath(),
             'relativePath'     => $file->getRelativePath(),
             'relativePathName' => $file->getRelativePathname(),
+            'parsingData'      => $parsingData,
         );
     }
 
