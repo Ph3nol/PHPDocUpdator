@@ -33,7 +33,8 @@ class Parser extends \ReflectionClass
     public function getParsedData()
     {
         $this->parsedData[] = array(
-            'methods' => $this->getParsedMethods(),
+            'classComments' => $this->getDocComment(),
+            'methods'       => $this->getParsedMethods(),
         );
 
         return $this->parsedData;

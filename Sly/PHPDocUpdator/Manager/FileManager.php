@@ -38,7 +38,8 @@ class FileManager
         {
             require_once $file->getRealpath();
 
-            $parsingData = new Parser($class);
+            $fileParser = new Parser($class);
+            $parsingData = $fileParser->getParsedData();
         }
 
         return $this->files[md5($file->getRealpath())] = array(

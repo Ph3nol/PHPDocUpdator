@@ -28,7 +28,8 @@ class Updator
         $this->fileManager = new FileManager();
 
         $this->loadFoldersIntoFinder();
-        $this->loadFoldersFromFinderToFileManager();
+
+        $parsedFiles = $this->getFileManagerFiles();
     }
 
     /**
@@ -50,12 +51,14 @@ class Updator
     }
 
     /**
-     * Load folders from Finder to FileManager.
+     * Get FileManager service files.
      */
-    protected function loadFoldersFromFinderToFileManager()
+    protected function getFileManagerFiles()
     {
         foreach ($this->finder as $file) {
             $this->fileManager->add($file);
         }
+
+        return $this->fileManager->getFiles();
     }
 }
