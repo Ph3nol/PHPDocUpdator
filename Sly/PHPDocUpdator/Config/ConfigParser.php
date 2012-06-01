@@ -36,9 +36,9 @@ class ConfigParser
     protected function getDefaultOptions()
     {
         return array(
-			'debug'   => false,
-			'include' => array(),
-			'exclude' => array(),
+            'debug'   => false,
+            'include' => array(),
+            'exclude' => array(),
         );
     }
 

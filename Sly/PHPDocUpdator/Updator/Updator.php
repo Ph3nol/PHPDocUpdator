@@ -4,7 +4,6 @@ namespace Sly\PHPDocUpdator\Updator;
 
 use Symfony\Component\Finder\Finder;
 use Sly\PHPDocUpdator\Manager\FileManager;
-use Sly\PHPDocUpdator\Generator\DocGenerator;
 
 /**
  * Updator.

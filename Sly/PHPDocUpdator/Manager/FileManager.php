@@ -34,8 +34,7 @@ class FileManager
     {
         $parsingData = array();
 
-        foreach (Parser::getClassesFromFilePath($file->getRealpath()) as $class)
-        {
+        foreach (Parser::getClassesFromFilePath($file->getRealpath()) as $class) {
             require_once $file->getRealpath();
 
             $fileParser = new Parser($class);
