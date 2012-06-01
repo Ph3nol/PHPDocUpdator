@@ -43,6 +43,8 @@ class DocGenerator
      * Get final source from array.
      *
      * @param array $source Source
+     *
+     * @return array
      */
     protected function getFinalSourceFromArray(array $source)
     {

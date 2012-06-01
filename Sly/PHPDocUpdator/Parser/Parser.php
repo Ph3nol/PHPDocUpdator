@@ -41,6 +41,11 @@ class Parser extends \ReflectionClass
         return $this->parsedData;
     }
 
+    /**
+     * Get parsed methods.
+     *
+     * @return array
+     */
     protected function getParsedMethods()
     {
         $methods = array();
@@ -59,6 +64,8 @@ class Parser extends \ReflectionClass
      * Get classes from file path.
      *
      * @param string $filePath File path
+     *
+     * @return array
      */
     public static function getClassesFromFilePath($filePath)
     {
@@ -69,6 +76,8 @@ class Parser extends \ReflectionClass
      * Get classes from code.
      *
      * @param string $sourceCode Source code
+     *
+     * @return array
      */
     public static function getClassesFromCode($sourceCode)
     {
@@ -78,8 +87,8 @@ class Parser extends \ReflectionClass
 
         for ($i = 2; $i < $count; $i++) {
             if ($tokens[$i - 2][0] == T_CLASS && $tokens[$i - 1][0] == T_WHITESPACE && $tokens[$i][0] == T_STRING) {
-                $class_name = $tokens[$i][1];
-                $classes[]  = $class_name;
+                $className = $tokens[$i][1];
+                $classes[]  = $className;
             }
         }
 

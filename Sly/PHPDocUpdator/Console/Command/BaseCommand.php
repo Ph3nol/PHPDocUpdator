@@ -45,6 +45,8 @@ abstract class BaseCommand extends Command
      *
      * @param string          $givenConfigFilePath Given configuration file path
      * @param OutputInterface $output              Output
+     *
+     * @return array
      */
     protected function getConfigFilePath($givenConfigFilePath, OutputInterface $output)
     {

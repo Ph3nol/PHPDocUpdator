@@ -34,6 +34,8 @@ class Updator
 
     /**
      * Loader folders into Finder service.
+     *
+     * @return array
      */
     protected function loadFoldersIntoFinder()
     {
@@ -52,6 +54,8 @@ class Updator
 
     /**
      * Get FileManager service files.
+     *
+     * @return array
      */
     protected function getFileManagerFiles()
     {
