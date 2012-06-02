@@ -1,4 +1,5 @@
 debug: false
+phpcs: true
 phpdoc:
     author: "Cédric Dugat <ph3@slynett.com>"
     version: "1.0"

@@ -3,6 +3,9 @@
 namespace Sly\PHPDocUpdator\Updator;
 
 use Symfony\Component\Finder\Finder;
+use Symfony\CS\Fixer;
+use Symfony\CS\FixerInterface;
+use Symfony\CS\Config\Config;
 use Sly\PHPDocUpdator\Manager\FileManager;
 use Sly\PHPDocUpdator\Parser\DocParser;
 use Sly\PHPDocUpdator\Generator\DocGenerator;
@@ -15,7 +18,6 @@ use Sly\PHPDocUpdator\Generator\DocGenerator;
 class Updator
 {
     protected $options;
-    protected $finder;
     protected $fileManager;
 
     /**
@@ -26,12 +28,13 @@ class Updator
     public function __construct(array $options)
     {
         $this->options     = $options;
-        $this->finder      = new Finder();
-        $this->fileManager = new FileManager();
+        $this->fileManager = new FileManager($this->options['include'], $this->options['exclude']);
 
-        $this->loadFoldersIntoFinder();
+        if ($this->options['phpcs']) {
+            $this->PHPCodeSnifferFix();
+        }
 
-        foreach ($this->getFileManagerFiles() as $file) {
+        foreach ($this->fileManager->getFiles() as $file) {
             $docGenerator = new DocGenerator($file);
 
             /**
@@ -41,36 +44,25 @@ class Updator
     }
 
     /**
-     * Loader folders into Finder service.
-     *
-     * @return array
+     * PHP Code Sniffer Fix.
+     * 
+     * @return SymfonyConfig
      */
-    protected function loadFoldersIntoFinder()
+    protected function PHPCodeSnifferFix()
     {
-        foreach ($this->options['include'] as $file) {
-            if (is_array($file)) {
-                $file = key($file);
-            }
+        $fixer = new Fixer();
+        $fixer->registerBuiltInFixers();
+        $fixer->registerBuiltInConfigs();
 
-            $this->finder->in(ROOT_DIR.'/'.$file);
-        }
+        $fixerConfig = new Config();
+        $fixerConfig->finder($this->fileManager->getFinder());
 
-        foreach ($this->options['exclude'] as $file) {
-            $this->finder->exclude(ROOT_DIR.'/'.$file);
-        }
-    }
+        $fixers = $fixerConfig->fixers(FixerInterface::PSR1_LEVEL);
 
-    /**
-     * Get FileManager service files.
-     *
-     * @return array
-     */
-    protected function getFileManagerFiles()
-    {
-        foreach ($this->finder as $file) {
-            $this->fileManager->add($file);
-        }
+        // $fixer->fix($fixerConfig, true));
 
-        return $this->fileManager->getFiles();
+        /**
+         * @todo
+         */
     }
 }

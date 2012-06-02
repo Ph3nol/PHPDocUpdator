@@ -27,6 +27,9 @@ class DocGenerator
         $this->fileMaker();
     }
 
+    /**
+     * Make file.
+     */
     protected function fileMaker()
     {
         /**
@@ -43,8 +46,6 @@ class DocGenerator
      */
     public static function getDocBlock(array $parserData)
     {
-        print_r($parserData);
-        exit();
         $docBlockLines = array('/**');
 
         foreach ($parserData['tags'] as $tagName => $tag) {

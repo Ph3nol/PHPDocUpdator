@@ -37,6 +37,7 @@ class ConfigParser
     {
         return array(
             'debug'   => false,
+            'phpcs'   => true,
             'include' => array(),
             'exclude' => array(),
         );
