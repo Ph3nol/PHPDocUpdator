@@ -54,9 +54,7 @@ class Updator
         $fixerConfig = new Config('Dyn', 'Dynamic PHP-CS-Fixer');
         $fixerConfig
             ->fixers(FixerInterface::ALL_LEVEL)
-            ->finder($this->fileManager->getFinder())
-            // ->setDir(ROOT_DIR)
-        ;
+            ->finder($this->fileManager->getFinder());
 
         // var_dump($fixer->fix($fixerConfig, false));
 
