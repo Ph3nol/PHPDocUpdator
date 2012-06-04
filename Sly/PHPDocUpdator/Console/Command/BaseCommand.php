@@ -62,12 +62,12 @@ abstract class BaseCommand extends Command
     protected function getConfigFilePath($givenConfigFilePath, OutputInterface $output)
     {
         if ($givenConfigFilePath) {
-            $configFilePath = ROOT_DIR.'/'.$givenConfigFilePath;
+            $this->configFilePath = ROOT_DIR.'/'.$givenConfigFilePath;
 
-            if (file_exists($configFilePath)) {
-                $output->writeln(sprintf('YML config file: <info>%s</info>', $configFilePath));
+            if (file_exists($this->configFilePath)) {
+                $output->writeln(sprintf('YML config file: <info>%s</info>', $this->configFilePath));
             } else {
-                $output->writeln(sprintf('<error>%s</error> YAML config file not found', $configFilePath));
+                $output->writeln(sprintf('<error>%s</error> YAML config file not found', $this->configFilePath));
             }
         } else {
             $configFiles = ConfigParser::getConfigFiles();
@@ -119,7 +119,7 @@ abstract class BaseCommand extends Command
         $output->writeln('');
 
         $dialog           = $this->getHelperSet()->get('dialog');
-        $configFileNumber = $dialog->ask($output, '<question>Which config file do you want to use?</question> ', 'foo');
+        $configFileNumber = $dialog->ask($output, '<question>Which config file do you want to use?</question> ', null);
 
         return $configFileNumber;
     }

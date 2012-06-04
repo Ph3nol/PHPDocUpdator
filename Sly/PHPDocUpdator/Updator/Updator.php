@@ -59,7 +59,7 @@ class Updator
 
         $fixers = $fixerConfig->fixers(FixerInterface::PSR1_LEVEL);
 
-        // $fixer->fix($fixerConfig, true));
+        // $fixer->fix($fixerConfig, true);
 
         /**
          * @todo
