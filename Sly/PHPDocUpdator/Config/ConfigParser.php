@@ -4,6 +4,7 @@ namespace Sly\PHPDocUpdator\Config;
 
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Config parser service.
@@ -71,5 +72,35 @@ class ConfigParser
     public function getOptions()
     {
         return $this->configFilePath ? array_merge($this->getDefaultOptions(), $this->getParsedConfig()) : $this->getDefaultOptions();
+    }
+
+    /**
+     * Get config files.
+     *
+     * @return array
+     */
+    public static function getConfigFiles()
+    {
+        $finder = new Finder();
+        $finder
+            ->files()
+            ->name('*.yml')
+            ->depth('< 3')
+            ->in(ROOT_DIR)
+            ->exclude(ROOT_DIR.'/vendor');
+
+        $configFiles = array();
+        $i           = 1;
+
+        foreach ($finder as $file) {
+            $configFiles[$i] = array(
+                $file->getRelativePathName(),
+                $file->getPathname(),
+            );
+
+            $i++;
+        }
+
+        return $configFiles;
     }
 }

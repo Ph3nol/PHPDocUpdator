@@ -32,6 +32,19 @@ abstract class BaseCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('<info>
+ _______           _______  ______
+(  ____ )|\     /|(  ____ )(  __  \ |\     /|
+| (    )|| )   ( || (    )|| (  \  )| )   ( |
+| (____)|| (___) || (____)|| |   ) || |   | |
+|  _____)|  ___  ||  _____)| |   | || |   | |
+| (      | (   ) || (      | |   ) || |   | |
+| )      | )   ( || )      | (__/  )| (___) |
+|/       |/     \||/       (______/ (_______)
+                                PHPDocUpdator
+        </info>');
+        $output->writeln('');
+
         $configFilePath = $this->getConfigFilePath($input->getOption('config'), $output);
         $configParser   = new ConfigParser($configFilePath);
 
@@ -53,17 +66,62 @@ abstract class BaseCommand extends Command
 
             if (file_exists($configFilePath)) {
                 $output->writeln(sprintf('YML config file: <info>%s</info>', $configFilePath));
-                $this->configFilePath = $configFilePath;
             } else {
                 $output->writeln(sprintf('<error>%s</error> YAML config file not found', $configFilePath));
-                $this->configFilePath = false;
             }
         } else {
-            $output->writeln('No YAML config file given, default options enabled');
-            $this->configFilePath = null;
+            $configFiles = ConfigParser::getConfigFiles();
+
+            if ($configFiles)
+            {
+                $configFileNumber = $this->displayConfigFileChoices($configFiles, $output);
+
+                if (in_array($configFileNumber, array_keys($configFiles)))
+                {
+                    $this->configFilePath = $configFiles[$configFileNumber][1];
+                    $output->writeln(sprintf('YML config file: <info>%s</info>', $this->configFilePath));
+                }
+                else
+                {
+                    $output->writeln('<error>Wrong choice!</error>');
+                }
+            }
         }
 
-        return $this->configFilePath;
+        if (isset($this->configFilePath) && $this->configFilePath)
+        {
+            return $this->configFilePath;
+        }
+        else
+        {
+            exit();
+        }
+    }
+
+    /**
+     * Display config file choices.
+     *
+     * @param array           $configFiles Config files list
+     * @param OutputInterface $output      Output
+     */
+    protected function displayConfigFileChoices(array $configFiles, OutputInterface $output)
+    {
+        $output->writeln('Config file choice:');
+
+        foreach ($configFiles as $k => $file) {
+            $output->writeln(sprintf('[%d] %s', $k, $file[0]));
+
+            if ($k >= 5) {
+                break;
+            }
+        }
+
+        $output->writeln('');
+
+        $dialog           = $this->getHelperSet()->get('dialog');
+        $configFileNumber = $dialog->ask($output, '<question>Which config file do you want to use?</question> ', 'foo');
+
+        return $configFileNumber;
     }
 
     /**
