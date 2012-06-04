@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Sly\PHPDocUpdator\Config\ConfigParser;
-use Sly\PHPDocUpdator\Updator\Updator;
 
 /**
  * Abstract BaseCommand class.
@@ -72,28 +71,21 @@ abstract class BaseCommand extends Command
         } else {
             $configFiles = ConfigParser::getConfigFiles();
 
-            if ($configFiles)
-            {
+            if ($configFiles) {
                 $configFileNumber = $this->displayConfigFileChoices($configFiles, $output);
 
-                if (in_array($configFileNumber, array_keys($configFiles)))
-                {
+                if (in_array($configFileNumber, array_keys($configFiles))) {
                     $this->configFilePath = $configFiles[$configFileNumber][1];
                     $output->writeln(sprintf('YML config file: <info>%s</info>', $this->configFilePath));
-                }
-                else
-                {
+                } else {
                     $output->writeln('<error>Wrong choice!</error>');
                 }
             }
         }
 
-        if (isset($this->configFilePath) && $this->configFilePath)
-        {
+        if (isset($this->configFilePath) && $this->configFilePath) {
             return $this->configFilePath;
-        }
-        else
-        {
+        } else {
             exit();
         }
     }

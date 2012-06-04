@@ -59,7 +59,7 @@ class DocParser
 
     /**
      * Get data.
-     * 
+     *
      * @return array
      */
     public function getData()

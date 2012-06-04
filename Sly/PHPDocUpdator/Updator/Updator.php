@@ -31,7 +31,7 @@ class Updator
         $this->fileManager = new FileManager($this->options['include'], $this->options['exclude']);
 
         if ($this->options['phpcs']) {
-            $this->PHPCodeSnifferFix();
+            $this->phpCodeSnifferFix();
         }
 
         foreach ($this->fileManager->getFiles() as $file) {
@@ -48,7 +48,7 @@ class Updator
      * 
      * @return SymfonyConfig
      */
-    protected function PHPCodeSnifferFix()
+    protected function phpCodeSnifferFix()
     {
         $fixer = new Fixer();
         $fixer->registerBuiltInFixers();
@@ -59,7 +59,7 @@ class Updator
 
         $fixers = $fixerConfig->fixers(FixerInterface::PSR1_LEVEL);
 
-        // $fixer->fix($fixerConfig, true);
+        // var_dump($fixer->fix($fixerConfig, true));
 
         /**
          * @todo

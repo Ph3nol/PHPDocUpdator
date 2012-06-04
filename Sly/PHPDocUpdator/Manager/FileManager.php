@@ -21,7 +21,7 @@ class FileManager
 
     /**
      * Constructor.
-     * 
+     *
      * @param array $includes Folders to include
      * @param array $excludes Folders to exclude
      */
@@ -49,7 +49,7 @@ class FileManager
 
     /**
      * Loader folders into Finder service.
-     * 
+     *
      * @param Finder $finder Finder service
      *
      * @return array
@@ -100,19 +100,13 @@ class FileManager
     }
 
     /**
-     * Get Finder service from FileManager.
-     * 
-     * @param Finder $finder Finder service
-     * 
+     * Get Finder service.
+     *
      * @return Finder
      */
-    public function getFinder(Finder $finder = null)
+    public function getFinder()
     {
-        if (null == $finder) {
-            $finder = $this->finder;
-        }
-
-        return $finder;
+        return $this->finder;
     }
 
     /**

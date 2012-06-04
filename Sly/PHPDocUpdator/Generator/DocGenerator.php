@@ -2,9 +2,6 @@
 
 namespace Sly\PHPDocUpdator\Generator;
 
-use Sly\PHPDocUpdator\Parser\FileParser;
-use Sly\PHPDocUpdator\Parser\DocParser;
-
 /**
  * DocGenerator service.
  * To generate PHPDoc from array or phpDocumentor\Reflection\DocBlock object.
@@ -17,7 +14,7 @@ class DocGenerator
 
     /**
      * Constructor.
-     * 
+     *
      * @param array $file File informations
      */
     public function __construct(array $file)
@@ -39,7 +36,7 @@ class DocGenerator
 
     /**
      * Get doc block.
-     * 
+     *
      * @param array $parserData Parser data
      *
      * @return string
