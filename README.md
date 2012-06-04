@@ -51,4 +51,12 @@ Declare all needed parameters (available soon) and use `update` command to apply
 ./bin/phpdu update --config=/path/to/config.yml
 ```
 
+Or not set `config` option for a config file suggestion:
+
+```shell
+./bin/phpdu update
+```
+
+~~~
+
 To be continued.
