@@ -57,6 +57,6 @@ Or not set `config` option for a config file suggestion:
 ./bin/phpdu update
 ```
 
-~~~
+-----
 
 To be continued.

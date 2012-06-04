@@ -7,7 +7,6 @@ use Symfony\CS\Fixer;
 use Symfony\CS\FixerInterface;
 use Symfony\CS\Config\Config;
 use Sly\PHPDocUpdator\Manager\FileManager;
-use Sly\PHPDocUpdator\Parser\DocParser;
 use Sly\PHPDocUpdator\Generator\DocGenerator;
 
 /**
@@ -45,8 +44,6 @@ class Updator
 
     /**
      * PHP Code Sniffer Fix.
-     * 
-     * @return SymfonyConfig
      */
     protected function phpCodeSnifferFix()
     {
@@ -54,12 +51,14 @@ class Updator
         $fixer->registerBuiltInFixers();
         $fixer->registerBuiltInConfigs();
 
-        $fixerConfig = new Config();
-        $fixerConfig->finder($this->fileManager->getFinder());
+        $fixerConfig = new Config('Dyn', 'Dynamic PHP-CS-Fixer');
+        $fixerConfig
+            ->fixers(FixerInterface::ALL_LEVEL)
+            ->finder($this->fileManager->getFinder())
+            // ->setDir(ROOT_DIR)
+        ;
 
-        $fixers = $fixerConfig->fixers(FixerInterface::PSR1_LEVEL);
-
-        // var_dump($fixer->fix($fixerConfig, true));
+        // var_dump($fixer->fix($fixerConfig, false));
 
         /**
          * @todo
