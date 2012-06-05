@@ -49,5 +49,17 @@ class UpdateCommand extends BaseCommand
         parent::execute($input, $output);
 
         $updator = new Updator($this->options);
+
+        if ($this->options['phpcs']) {
+            $fixesCount = count($fixes = $updator->phpCodeSnifferFix());
+
+            $output->writeln(sprintf('PHP-CS-Fixer: <info>%d</info> fixes applied', $fixesCount));
+
+            foreach ($fixes as $file => $appliedFix) {
+                $output->writeln(sprintf('--> %s: %s', $file, strtoupper(implode(', ', $appliedFix))));
+            }
+        }
+
+        $updator->generateDoc();
     }
 }

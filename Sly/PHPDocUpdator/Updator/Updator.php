@@ -28,24 +28,14 @@ class Updator
     {
         $this->options     = $options;
         $this->fileManager = new FileManager($this->options['include'], $this->options['exclude']);
-
-        if ($this->options['phpcs']) {
-            $this->phpCodeSnifferFix();
-        }
-
-        foreach ($this->fileManager->getFiles() as $file) {
-            $docGenerator = new DocGenerator($file);
-
-            /**
-             * @todo
-             */
-        }
     }
 
     /**
      * PHP Code Sniffer Fix.
+     * 
+     * @return array
      */
-    protected function phpCodeSnifferFix()
+    public function phpCodeSnifferFix()
     {
         $fixer = new Fixer();
         $fixer->registerBuiltInFixers();
@@ -56,10 +46,22 @@ class Updator
             ->fixers(FixerInterface::ALL_LEVEL)
             ->finder($this->fileManager->getFinder());
 
-        // var_dump($fixer->fix($fixerConfig, false));
+        $appliedFixes = $fixer->fix($fixerConfig, false);
 
-        /**
-         * @todo
-         */
+        return $appliedFixes;
+    }
+
+    /**
+     * Documentation generation.
+     */
+    public function generateDoc()
+    {
+        foreach ($this->fileManager->getFiles() as $file) {
+            $docGenerator = new DocGenerator($file);
+
+            /**
+             * @todo
+             */
+        }
     }
 }

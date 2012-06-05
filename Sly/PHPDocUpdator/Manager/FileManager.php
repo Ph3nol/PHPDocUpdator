@@ -122,4 +122,16 @@ class FileManager
 
         return $this->files;
     }
+
+    /**
+     * Get relative path from real one.
+     * 
+     * @param string $realPath Real path
+     * 
+     * @return string
+     */
+    public static function getRelativePathFromRealPath($realPath)
+    {
+        return str_replace(str_replace('/bin/..', '', ROOT_DIR).'/', '', $realPath);
+    }
 }

@@ -5,6 +5,7 @@ namespace Sly\PHPDocUpdator\Config;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Finder\Finder;
+use Sly\PHPDocUpdator\Manager\FileManager;
 
 /**
  * Config parser service.
@@ -102,5 +103,22 @@ class ConfigParser
         }
 
         return $configFiles;
+    }
+
+    /**
+     * Get wanted PHP documentation from file path.
+     * 
+     * @param string $filePath File path
+     * 
+     * @return array
+     */
+    public static function getWantedDocFromFilePath($filePath)
+    {
+        // FileManager::getRelativePathFromRealPath($filePath);
+
+        /**
+         * @todo
+         */
+        return array();
     }
 }

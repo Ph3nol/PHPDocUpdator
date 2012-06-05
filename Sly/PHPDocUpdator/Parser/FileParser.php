@@ -36,6 +36,7 @@ class FileParser extends \ReflectionClass
         $phpDocumentorDocBlock = new PHPDocumentorDocBlock($this);
 
         $this->parsedData[] = array(
+            'name'      => $this->getName(),
             'comments'  => $this->getDocComment(),
             'docParser' => new DocParser($phpDocumentorDocBlock),
             'methods'   => $this->getParsedMethods(),
@@ -57,6 +58,7 @@ class FileParser extends \ReflectionClass
             $phpDocumentorDocBlock = new PHPDocumentorDocBlock($method->getDocComment());
 
             $methods[$method->getName()] = array(
+                'name'      => $method->getName(),
                 'comments'  => $method->getDocComment(),
                 'docParser' => new DocParser($phpDocumentorDocBlock),
             );
